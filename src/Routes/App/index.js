@@ -21,7 +21,6 @@ export default class App extends React.Component{
             <div>
                 Este é o meu app
             </div>
-)
-    }
+    )}
 
 }
