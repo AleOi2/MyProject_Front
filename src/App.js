@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios'
+import { Button } from 'react-bootstrap'
+import { SquareBox } from "./Components/SquareBox/squareBox1"
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import FirstAction from './redux/actions/FirstAction'
+import SecondAction from './redux/actions/SecondAction'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const containerStyle  = {
+    margin: 0,
+    padding: 0,
+    display: "flex",
+    justifyContent: "center",
+    border: "3px solid yellow"
 }
 
-export default App;
+class App extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    onSubmit = (event) => {
+        event.preventDefault()
+        console.log("Submit")
+    }
+
+    componentDidMount(){
+        // axios.get("http://localhost:5000")
+        //     .then((response) =>{
+        //         console.log(response)
+        //     })
+    }
+
+
+    render(){
+        return(
+            <div className = "container" style = { containerStyle }>
+                <SquareBox></SquareBox>
+                <Button onClick = {() =>{
+                    console.log("Esse é o contador");
+                    console.log(this.props.count);   
+                    this.props.FirstAction()
+                }}> Redux teste</Button>
+                <Button onClick = {() =>{
+                    console.log("Esse é o contador");
+                    console.log(this.props.count2);   
+                    this.props.SecondAction()
+                }}> Second Redux teste</Button>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = ({ FirstReducer, SecondReducer}) =>({
+    count: FirstReducer,
+    count2: SecondReducer
+})
+
+const mapDispatchToProps = (dispatch) =>{
+    return(
+        bindActionCreators({FirstAction, SecondAction}, dispatch)
+    )
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
