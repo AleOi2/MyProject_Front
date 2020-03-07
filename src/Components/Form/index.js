@@ -5,16 +5,17 @@ const Form = (props) =>{
     let {
         initialState,
         render,
-        onAccept
+        onAccept, 
+        others
     } = props;
     let [formState, setFormState] = useState(initialState);
 
     return(
         <>
-            { render(formState, setFormState, onAccept) }
+            { render(formState, setFormState, onAccept, others) }
             {(onAccept) &&
                 <Button onClick={() =>{
-                    onAccept(formState, setFormState);
+                    onAccept(formState, setFormState, others);
                 }}>Clique Aqui</Button>
             }            
         </>
