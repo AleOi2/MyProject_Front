@@ -1,7 +1,10 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import App  from '../App'
 import Form from '../../Components/Form'
 import Panel from '../../Components/Panel';
+import { BrowserRouter as Router,
+    Switch, Route  } from 'react-router-dom'
 
 export class Login extends React.Component{
     constructor(props){
@@ -11,11 +14,11 @@ export class Login extends React.Component{
                 return(
                     <>
                         <div style={{fontSize:'30pt', textAlign:'center', background:'black', 
-                            color:'white', fontFamily:'Roboto Mono', padding:'20px',                            
+                            color:'white', fontFamily:'Roboto Mono', padding:'20px',
                         }}>
                             Welcome to my project
                         </div>
-                        <div style={{display:'flex',height:'90%'}}>
+                        <div style={{display:'flex',height:'90%', position:'relative'}}>
                             <div style={{color:'white', /* border:'2px solid red', */ 
                                 backgroundImage: 'linear-gradient(to right, #152545, #516b9c)',
                                 width:'50%', minHeight:'200px'
@@ -62,7 +65,7 @@ export class Login extends React.Component{
                                         Password:
                                     </div>
                                     <div style={{flex:2}}>
-                                        <input type="text" 
+                                        <input type="password" 
                                             style={{border:'2px solid #172c57',  
                                             height:'20px'}}
                                             value={formState.password}
@@ -83,6 +86,7 @@ export class Login extends React.Component{
 
     render(){
         let { render } = this.options;
+        let { history } = this.props;
         return(
             <Panel PanelStyle={{width:'100%', height:'100%', zIndex:'-1', 
                 background:'#3c5178', opacity:'0.9', 
@@ -92,11 +96,12 @@ export class Login extends React.Component{
                     onAccept = { (formState, setFormState) =>{
                         console.log(formState)
                         setFormState({...formState, password:'', login:''})
+
+                        history.push('/app');
                     }}
                     initialState={{login:'', password:''}}
                 ></Form>
             </Panel>
-
         )
 
     }
