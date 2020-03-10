@@ -30,7 +30,7 @@ const Form = (props) =>{
         <>
             <div style={{
                 position:'relative', width: '60%', 
-                minWidth:'500px',
+                minWidth:'80%',
                 height: '80%',top:'50%', left:'50%', 
                 transform:'translate(-50%,-50%)',  /* border:'2px solid blue', */
                 display:'flex', flexDirection:'column',

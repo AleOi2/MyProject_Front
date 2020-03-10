@@ -30,7 +30,7 @@ export class Login extends React.Component{
                         </div>
 
 
-                        <div style={{color:'#11244a'/* , border:'2px solid orange' */, width:'100%',
+                        <div style={{color:'#11244a'/* , border:'2px solid orange' */, width:'50%',
                             backgroundColor:'white', flex:1
                         }}>
                             <div style={{/* border:'2px solid blue', */ position:'relative', top:'20%', 
@@ -40,10 +40,10 @@ export class Login extends React.Component{
                             <div style={{display:'flex', flexDirection:'column', alignItems:'center', position:'relative', top:'30%'}}>
                                 <div style = {{display:'flex', /* border:'2px solid blue',  */
                                     alignContent:'center', justifyContent:'center', width:'100%' ,
-                                    paddingLeft:'40px', paddingBottom:'20px', boxSizing:'border-box',
+                                    paddingLeft:'10%', paddingBottom:'20px', boxSizing:'border-box',
                                     flexWrap:'wrap'
                                 }}>
-                                    <div style={{flex:1 , fontSize:'20px', paddingLeft:'10%'}}>
+                                    <div style={{flex:1 , fontSize:'20px'}}>
                                         Login:
                                     </div>
                                     <div style={{flex:2}}>
@@ -52,22 +52,23 @@ export class Login extends React.Component{
                                             onChange={(event) =>{
                                                 formSetState({...formState, login:event.target.value})
                                             }}
-                                            style={{border:'2px solid #172c57', height:'20px'
+                                            style={{border:'2px solid #172c57', height:'20px',
+                                            width:'90%'
                                         }}></input>
                                     </div>
                                 </div>
                                 <div style = {{display:'flex', /* border:'2px solid green', */
                                     alignContent:'center', justifyContent:'center', width:'100%',
-                                    paddingLeft:'40px', boxSizing:'border-box',
+                                    paddingLeft:'10%', boxSizing:'border-box',
                                     flexWrap:'wrap'
                                 }}>
-                                    <div style={{flex:1 , fontSize:'20px', paddingLeft:'10%'}}>
+                                    <div style={{flex:1 , fontSize:'20px'}}>
                                         Password:
                                     </div>
                                     <div style={{flex:2}}>
                                         <input type="password" 
                                             style={{border:'2px solid #172c57',  
-                                            height:'20px'}}
+                                            height:'20px', width:'90%'}}
                                             value={formState.password}
                                             onChange={(event) =>{
                                                 formSetState({...formState, password:event.target.value})
