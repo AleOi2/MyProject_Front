@@ -3,6 +3,7 @@ import { BrowserRouter as Router,
     Switch, Route  } from 'react-router-dom'
 import Panel from '../../Components/Panel';
 import Form from '../../Components/Form';
+    
 
 
 export default class App extends React.Component{
@@ -19,7 +20,6 @@ export default class App extends React.Component{
             </div>  
         )
     }
-
     componentDidMount(){
         let {history} = this.props;
         console.log(history)
@@ -36,6 +36,6 @@ export default class App extends React.Component{
                 <Form render={this.optionRender}>
                 </Form>
             </Panel>
-    )}
+                )}
 
 }

@@ -1,8 +1,85 @@
 import React, { useState } from 'react'
-//import { Button, ModalFooter } from 'react-bootstrap'
-import styled  from 'styled-components';
+import { Button, ModalFooter } from 'react-bootstrap'
+import styled from 'styled-components';
+import { safeAccess } from '../../utils/utils'
 
-const Button = styled.button`
+
+const Form = (props) =>{
+    let {
+        initialState,
+        render,
+        onAccept, 
+        styleSquareCustom, styleBtnConteinerCustom,
+        styleSpecific,
+        others
+    } = props;
+    let [formState, setFormState] = useState(initialState);
+
+    return(
+        <>
+            <Square style={(safeAccess(styleSpecific, ['square'], undefined))?styleSpecific.square:styleSquareCustom}>
+                { (render)?render(formState, setFormState, onAccept, others):<div>You have to put render</div> }
+                <BtnConteiner style={(safeAccess(styleSpecific, ['btnconteiner'], undefined))?styleSpecific.btnconteiner:styleBtnConteinerCustom}>
+                    {
+                        (onAccept) &&
+                        <CustomButton onClick={() =>{
+                            onAccept(formState, setFormState, others);
+                        }}>Conectar</CustomButton>
+                    }            
+                </BtnConteiner>
+            </Square>
+        </>
+    )    
+} 
+
+export default Form;
+
+const Square = styled.div`
+    position:${props => (props.position)?props.position:'relative' };
+    width: ${props => (props.position)?props.width:'50%'}; 
+    height: ${props => (props.position)?props.height:'50%'}; 
+    min-width:60%;
+    top:${props => (props.position)?props.top:'35%'}; 
+    left:${props => (props.position)?props.left:'50%'}; 
+    transform:translate(-50%,-50%);  /* border:'2px solid blue', */
+    display:flex;
+    flex-direction:column;
+    box-shadow: 0 10px 100px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border:${props => (props.position)?props.top:''}
+`
+
+const BtnConteiner = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    padding:${props => (props.padding)?props.padding:'10px' };
+    background-color:${props => (props.backgroundColor)?props.backgroundColor:'black' };
+    position:relative
+`
+
+/* const CustomButton = styled.button`
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;    
+    position: absolute;
+    border-radius: 3px;
+    text-align: center;
+  	text-transform: uppercase;
+    user-select: none;
+
+    :hover{
+		cursor: pointer;
+    };
+    :after {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        border-radius: 50%;
+        opacity: 0.4;
+        bottom: -30px;
+    }
+` */
+const CustomButton = styled.button`
   cursor: pointer;
   background: transparent;
   font-size: 16px;
@@ -17,42 +94,3 @@ const Button = styled.button`
     color: white;
   }
 `;
-
-const Form = (props) =>{
-    let {
-        initialState,
-        render,
-        onAccept
-    } = props;
-    let [formState, setFormState] = useState(initialState);
-
-    return(
-        <>
-            <div style={{
-                position:'relative', width: '60%', 
-                minWidth:'80%',
-                height: '80%',top:'50%', left:'50%', 
-                transform:'translate(-50%,-50%)',  /* border:'2px solid blue', */
-                display:'flex', flexDirection:'column',
-                boxShadow:' 0 10px 100px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-                // border:'2px solid red'
-            }}>
-                { (render)?render(formState, setFormState, onAccept):<div>You have to put render</div> }
-                {
-                    (onAccept) && <div style={{display:'flex', justifyContent:'flex-end',
-                        padding:'10px',backgroundColor:'black', position:'relative',                        
-                    }}>
-                            
-                        <Button onClick={() =>{
-                            onAccept(formState, setFormState);
-                        }}>Accept</Button>
-                    </div>
-                }            
-            </div>
-
-        </>
-    )    
-} 
-
-export default Form;
-
