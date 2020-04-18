@@ -13,11 +13,6 @@ const Form = (props) =>{
     return(
         <>
             { render(formState, setFormState, onAccept, others) }
-            {(onAccept) &&
-                <Button onClick={() =>{
-                    onAccept(formState, setFormState, others);
-                }}>Clique Aqui</Button>
-            }            
         </>
     )    
 } 
