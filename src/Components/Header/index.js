@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { safeAccess, elvisOperator } from '../../utils/utils';
-import { Burger } from '../Hamburger/hanburger'
 
 let Header = (props) => {
     let {
@@ -12,9 +11,6 @@ let Header = (props) => {
         loginCad, routerLoginCad
 
     } = props;
-    const [open, setOpen] = React.useState(false);
-    console.log('Inicio')
-    console.log(elvisOperator(styles, styles, {}))
     useEffect(() => {
 
     }, []);
@@ -35,7 +31,6 @@ let Header = (props) => {
                 </Navigator>
 
             </div>
-            <Burger open={open} setOpen={setOpen} />
             <Navigator>
                 <UListText>
                     {
